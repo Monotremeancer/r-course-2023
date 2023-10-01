@@ -6,9 +6,9 @@ library(patchwork)
 # Import data -------------------------------------------------------------
 
 excel_files = c(
-  "data/Station-1_2023-09-07_report.xlsx",
-  "data/Station-1_2023-09-08_report.xlsx",
-  "data/Station-1_2023-09-09_report.xlsx"
+  "data-in/Station-1_2023-09-07_report.xlsx",
+  "data-in/Station-1_2023-09-08_report.xlsx",
+  "data-in/Station-1_2023-09-09_report.xlsx"
 )
 all_nights = NULL
 for(excel_file in excel_files) {
@@ -34,9 +34,9 @@ all_nights_tidy <- all_nights |>
 plot1 <- all_nights_tidy |>
   # Filter.
   filter(quality != "Q0" & quality != "NA") |>
-  # 
-  mutate(lat_m = latitude_dd / 360.0 * 40000000.0) |> 
-  mutate(long_m = longitude_dd / 360.0 * 40000000.0) |> 
+  #
+  mutate(lat_m = latitude_dd / 360.0 * 40000000.0) |>
+  mutate(long_m = longitude_dd / 360.0 * 40000000.0) |>
   ggplot() +
   geom_point(aes(y = lat_m - mean(lat_m), x = as_datetime(paste(date, time)), colour = "Latitude (m)"))  +
   geom_point(aes(y = long_m- mean(long_m), x = as_datetime(paste(date, time)), colour = "Longitude (m)")) +
@@ -54,9 +54,9 @@ plot1
 plot2 <- all_nights_tidy |>
   # Filter.
   filter(quality != "Q0" & quality != "NA") |>
-  # 
-  mutate(lat_m = latitude_dd / 360.0 * 40000000.0) |> 
-  mutate(long_m = longitude_dd / 360.0 * 40000000.0) |> 
+  #
+  mutate(lat_m = latitude_dd / 360.0 * 40000000.0) |>
+  mutate(long_m = longitude_dd / 360.0 * 40000000.0) |>
   ggplot() +
   geom_boxplot(aes(y = lat_m - mean(lat_m), x = "Latitude (m)"))  +
   geom_boxplot(aes(y = long_m- mean(long_m), x = "Longitude (m)")) +
@@ -71,9 +71,9 @@ plot2
 plot3 <- all_nights_tidy |>
   # Filter.
   filter(quality != "Q0" & quality != "NA") |>
-  # 
-  mutate(lat_m = latitude_dd / 360.0 * 40000000.0) |> 
-  mutate(long_m = longitude_dd / 360.0 * 40000000.0) |> 
+  #
+  mutate(lat_m = latitude_dd / 360.0 * 40000000.0) |>
+  mutate(long_m = longitude_dd / 360.0 * 40000000.0) |>
   ggplot() +
   geom_violin(aes(y = lat_m - mean(lat_m), x = "Latitude (m)"))  +
   geom_violin(aes(y = long_m- mean(long_m), x = "Longitude (m)")) +
@@ -89,9 +89,9 @@ plot4 <- all_nights_tidy |>
   # Filter.
   filter(quality != "Q0" & quality != "NA") |>
   filter(monitoring_night == "Station-1_2023-09-07") |>
-  # 
-  mutate(lat_m = latitude_dd / 360.0 * 40000000.0) |> 
-  mutate(long_m = longitude_dd / 360.0 * 40000000.0) |> 
+  #
+  mutate(lat_m = latitude_dd / 360.0 * 40000000.0) |>
+  mutate(long_m = longitude_dd / 360.0 * 40000000.0) |>
   ggplot() +
   geom_point(aes(x = as_datetime(paste(date, time)), y = lat_m - mean(lat_m), colour = "Latitude (m)"))  +
   geom_point(aes(x = as_datetime(paste(date, time)), y = long_m- mean(long_m), colour = "Longitude (m)")) +
@@ -107,9 +107,9 @@ plot4
 plot5 <- all_nights_tidy |>
   # Filter.
   filter(quality != "Q0" & quality != "NA") |>
-  # 
-  mutate(lat_m = latitude_dd / 360.0 * 40000000.0) |> 
-  mutate(long_m = longitude_dd / 360.0 * 40000000.0) |> 
+  #
+  mutate(lat_m = latitude_dd / 360.0 * 40000000.0) |>
+  mutate(long_m = longitude_dd / 360.0 * 40000000.0) |>
   ggplot() +
   geom_point(aes(x = long_m - mean(long_m), y = lat_m - mean(lat_m)))  +
   geom_smooth(aes(x = long_m - mean(long_m), y = lat_m - mean(lat_m))) +
