@@ -27,7 +27,7 @@ data <- compile_spreadsheet(starting_directory = './MyData',
 data <- compile_spreadsheet()
 "
 
-
+?ggplot
 
 compile_spreadsheets <- function(starting_directory =".",
                          document_name = "*",
