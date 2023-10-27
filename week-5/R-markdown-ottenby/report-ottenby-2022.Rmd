@@ -1,0 +1,75 @@
+---
+title: "Rapport Ottenby 2022"
+author: "BatLife Sweden - Artbestämning & Stationsnätverk"
+date: "2023-10-27"
+output: html_document
+# output: word_document
+# output: pdf_document
+# always_allow_html: true
+---
+
+```{r, include=FALSE}
+source("ottenby_data.R", local = knitr::knit_global())
+```
+
+**Observera att denna rapport endast är ett exempel**.
+Bakomliggande data och R-skript för rapporten finns tillgängliga på 
+[GitHub](https://github.com/batlife-sweden/r-course-2023)
+och användes i samband med en utbildning i programmeringsspråket R.
+
+## Stationen vid Ottenby
+
+Under våren 2022 startades den automatiska övervakningsstationen i Ottenby 
+upp på nytt efter att inte ha varit i drift under ett antal år. 
+Planen är att den ska ingå som en permanent del i det stationsnätverk som 
+drivs av BatLife Sweden.
+
+Mer information om stationsnätverket finns att läsa på BatLife Swedens hemsida: 
+[Stationsnätverket](https://batlife-sweden.se/stationsnatverket). 
+Information om den arbetsgrupp som ansvara för stationen finns här:
+[Artbestämning & Stationsnätverk](https://batlife-sweden.se/artbestamning-stationsnatverk/).
+
+## Artförekomst och aktivitet under 2022
+
+Övervakningsstationen togs i drift `r start_date` och den första 
+inspelningen med ljud från fladdermöss gjordes `r first_bat_date`.
+Detektorn plockades ner `r end_date` för kalibrering och underhåll. 
+Den sista inspelningen med fladdermusljud för året gjordes `r last_bat_date`.
+
+Totalt har `r total_number_of_files` ljudfiler spelats in under 2022 
+och `r number_of_files_with_bats` av dessa har innehållit läten från fladdermöss.
+
+```{r out.width='100%', echo=FALSE}
+options(knitr.kable.NA = '')
+# knitr::kable(bats_by_day_table, align = "lccccccccccccccc", 
+# caption = "Registrerade arter per dygn")
+knitr::kable(bats_by_month_table, align = "lccccccccccccccc", 
+caption = "Registrerade arter per månad")
+```
+
+```{r out.width='100%', echo=FALSE}
+  # Show .
+  bat_activity_by_day
+```
+
+## Väderdata från SMHI
+
+I närheten av övervakningsstationen har SMHI en väderstation som heter
+"Ölands södra udde A".
+Data från denna väderstation gå att ladda ner från 
+[SMHI:s öppna data](https://www.smhi.se/data/meteorologi/ladda-ner-meteorologiska-observationer).
+
+Temperaturer för 2020 visas i denna graf. Min och max-temperatur per dygn 
+vistas som vertikala linjer. Dessutom visas medelvärde per dygn.
+
+```{r out.width='100%', echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+  # Show plot.
+  weather_temperature
+```
+
+Placeringen av väderstationen framgår av denna karta.
+
+```{r out.width='100%', echo=FALSE}
+  # Shop map.
+  map_ottenby_smhi
+```
