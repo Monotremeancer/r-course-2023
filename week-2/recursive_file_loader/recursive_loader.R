@@ -32,7 +32,8 @@ data <- compile_spreadsheet()
 compile_spreadsheets <- function(starting_directory =".",
                          document_name = "*",
                          file_format = "xlsx",
-                         loading_function = read.xlsx){
+                         loading_function = read.xlsx,
+                         ...){
 
     #Set the working directory to appropriate directory 
   setwd(starting_directory)
@@ -48,7 +49,7 @@ compile_spreadsheets <- function(starting_directory =".",
       curr_file <- to_load[[curr_file_num]]
       
       # Load current file and add a column with the filename to allow tracking
-      data_to_append <- loading_function(curr_file)
+      data_to_append <- loading_function(curr_file, ...)
       data_to_append$source_file <- rep(curr_file, nrow(data_to_append))
       
       # Append new data
